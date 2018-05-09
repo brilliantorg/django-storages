@@ -10,7 +10,7 @@ from django.core.files.storage import Storage
 from django.utils import timezone as tz
 from django.utils.deconstruct import deconstructible
 from django.utils.encoding import (
-    filepath_to_uri, force_bytes, force_text, smart_str,
+    force_bytes, force_text, smart_str,
 )
 from django.utils.six import BytesIO
 
@@ -472,7 +472,7 @@ class S3BotoStorage(Storage):
         name = self._normalize_name(self._clean_name(name))
         if self.custom_domain:
             return '%s//%s/%s' % (self.url_protocol,
-                                  self.custom_domain, filepath_to_uri(name))
+                                  self.custom_domain, name)
 
         if expire is None:
             expire = self.querystring_expire
